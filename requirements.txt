@@ -1,0 +1,7 @@
+pdfplumber
+tqdm
+rank_bm25
+jieba
+sentence_transformers
+sklearn
+numpy
