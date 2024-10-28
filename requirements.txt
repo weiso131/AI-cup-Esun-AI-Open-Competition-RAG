@@ -5,3 +5,5 @@ jieba
 sentence_transformers
 sklearn
 numpy
+huggingface-hub
+langchain
