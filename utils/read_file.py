@@ -1,6 +1,7 @@
 import pdfplumber
 import json
 import os
+import numpy as np
 
 def read_text_pdf(pdf_path : str) -> str:
     """
@@ -14,13 +15,30 @@ def read_text_pdf(pdf_path : str) -> str:
             text += page.extract_text()
     return text
 
+def generate_faq_retrieve(faq: dict, id: int) -> str:
+
+    text = ""
+
+    for faq_data in faq[str(id)]:
+
+        question = faq_data["question"]
+        answers = faq_data["answers"]
+        text += f"{question} {answers}\n"
+    return text
+
+def read_target_faq(faq: dict, indexs: list) -> list:
+
+    all_texts = []
+
+    for i in indexs:
+        all_texts.append(generate_faq_retrieve(faq, i))
+    
+    return all_texts
+
 def read_target_insurance_pdf(dir_path : str, indexs : list) -> list:
     """
     讀取指定編號純文字pdf
     並將其合成為一個list
-
-    TODO：
-    怎麼切分token比較好
     """
 
     all_pdf = os.listdir(dir_path)
@@ -35,7 +53,7 @@ def read_target_insurance_pdf(dir_path : str, indexs : list) -> list:
         all_texts.append(text)
         order_list.append(int(pdf_name[:-4]))
     
-    return all_texts, order_list
+    return all_texts, np.array(order_list)
 
 
 def read_json(json_path : str) -> dict:
