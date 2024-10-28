@@ -25,21 +25,21 @@ def read_target_insurance_pdf(dir_path : str, indexs : list) -> list:
 
     all_pdf = os.listdir(dir_path)
     all_texts = []
-
+    order_list = []
     for i in range(len(all_pdf)):
-        if not (i + 1) in indexs:
+        if not int(all_pdf[i][:-4]) in indexs:
             continue
+        
         pdf_name = all_pdf[i]
         text = read_text_pdf(f"{dir_path}/{pdf_name}")
         all_texts.append(text)
+        order_list.append(int(pdf_name[:-4]))
     
-    return all_texts
+    return all_texts, order_list
 
 
 def read_json(json_path : str) -> dict:
     with open(json_path, "r", encoding="utf-8") as file:
         data = json.load(file)
     return data
-
-
 
