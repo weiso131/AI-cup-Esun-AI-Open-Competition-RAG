@@ -41,17 +41,19 @@ def read_target_insurance_pdf(dir_path : str, indexs : list) -> list:
     並將其合成為一個list
     """
 
-    all_pdf = os.listdir(dir_path)
     all_texts = []
     order_list = []
-    for i in range(len(all_pdf)):
-        if not int(all_pdf[i][:-4]) in indexs:
-            continue
-        
-        pdf_name = all_pdf[i]
-        text = read_text_pdf(f"{dir_path}/{pdf_name}")
+
+    for index in indexs:
+        filename = f"{dir_path}/{index}"
+        text = ""
+
+        if os.path.exists(filename + ".pdf"):
+            text = read_text_pdf(filename + ".pdf")
+        else:
+            text = read_text_pdf(filename + ".txt")
         all_texts.append(text)
-        order_list.append(int(pdf_name[:-4]))
+        order_list.append(index)
     
     return all_texts, np.array(order_list)
 

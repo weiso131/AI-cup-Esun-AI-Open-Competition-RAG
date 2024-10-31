@@ -164,3 +164,7 @@ cython_debug/
 *.json
 .history
 models
+競賽資料集.zip
+output
+output_finance
+output_insurance
