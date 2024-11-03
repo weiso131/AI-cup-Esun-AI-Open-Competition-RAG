@@ -35,16 +35,19 @@ def read_target_faq(faq: dict, indexs: list) -> list:
     
     return all_texts
 
-def read_target_insurance_pdf(dir_path : str, indexs : list) -> list:
+def read_target_insurance_pdf(dir_path: str, indexs: list, already_read: list[str]) -> list:
     """
     讀取指定編號純文字pdf
     並將其合成為一個list
     """
 
     all_texts = []
-    order_list = []
 
     for index in indexs:
+        if already_read[index] != "":
+            all_texts.append(already_read[index])
+            continue
+
         filename = f"{dir_path}/{index}"
         text = ""
 
@@ -53,9 +56,8 @@ def read_target_insurance_pdf(dir_path : str, indexs : list) -> list:
         else:
             text = read_text_pdf(filename + ".txt")
         all_texts.append(text)
-        order_list.append(index)
     
-    return all_texts, np.array(order_list)
+    return all_texts
 
 
 def read_json(json_path : str) -> dict:
