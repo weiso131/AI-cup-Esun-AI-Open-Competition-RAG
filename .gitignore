@@ -169,3 +169,4 @@ output
 output_finance
 output_insurance
 test.ipynb
+local_bge_reranker_model

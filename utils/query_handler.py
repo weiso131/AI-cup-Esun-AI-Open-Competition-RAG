@@ -4,11 +4,14 @@ YEAR_PATTERN = r"[0-9一二三四五六七八九零]{3,4}年"
 SEASON_PATTERN = r"[0-9一二三四]{1,2}季"
 MONTH_PATTERN = r"[0-9]{1,2}月"
 
+CHINESE_NUM = ['○', '一', '二', '三', '四', '五', '六', '七', '八', '九']
+
 def extract_time(query: str) -> tuple:
     """
         回傳 年,季,月 (按照順序)，如果該項沒有則回傳空該項的 空list
     """
-    
+    for i in range(10):
+        query = query.replace(CHINESE_NUM[i], str(i + 1))
     years_reg = re.findall(YEAR_PATTERN, query)
     seasons = re.findall(SEASON_PATTERN, query)
     months = re.findall(MONTH_PATTERN, query)
