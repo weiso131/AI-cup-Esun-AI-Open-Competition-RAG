@@ -1,6 +1,6 @@
 import re
 
-YEAR_PATTERN = r"[0-9]{3,4}年"
+YEAR_PATTERN = r"[0-9一二三四五六七八九零]{3,4}年"
 SEASON_PATTERN = r"[0-9一二三四]{1,2}季"
 MONTH_PATTERN = r"[0-9]{1,2}月"
 

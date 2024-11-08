@@ -47,7 +47,8 @@ def read_target_insurance_pdf(dir_path: str, indexs: list, already_read: list[st
         if already_read[index] != "":
             all_texts.append(already_read[index])
             continue
-
+        
+            
         filename = f"{dir_path}/{index}"
         text = ""
 
@@ -55,6 +56,9 @@ def read_target_insurance_pdf(dir_path: str, indexs: list, already_read: list[st
             text = read_text_pdf(filename + ".pdf")
         else:
             text = read_text_pdf(filename + ".txt")
+
+        if already_read[index] == "":
+            already_read[index] = text
         all_texts.append(text)
     
     return all_texts
