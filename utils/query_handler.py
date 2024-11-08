@@ -6,13 +6,12 @@ MONTH_PATTERN = '[0-9]{1,2}月'
 
 def extract_time(query: str) -> tuple:
     """
-        回傳 月,季,分 (按照順序)，如果該項沒有則回傳空該項的 空list
+        回傳 年,季,月 (按照順序)，如果該項沒有則回傳空該項的 空list
     """
     
     years = re.findall(YEAR_PATTERN, query)
     seasons = re.findall(SEASON_PATTERN, query)
     months = re.findall(MONTH_PATTERN, query)
-    
     
     years = [int(year.replace('年', '')) for year in years] if years else []
     seasons = [int(season.replace('季', '')  
