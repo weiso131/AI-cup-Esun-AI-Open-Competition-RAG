@@ -1,8 +1,8 @@
 import re
 
-YEAR_PATTERN = '[0-9]{3,4}年'
-SEASON_PATTERN = '[0-9一二三]{1,2}季'
-MONTH_PATTERN = '[0-9]{1,2}月'
+YEAR_PATTERN = r"[0-9]{3,4}年"
+SEASON_PATTERN = r"[0-9一二三]{1,2}季"
+MONTH_PATTERN = r"[0-9]{1,2}月"
 
 def extract_time(query: str) -> tuple:
     """
