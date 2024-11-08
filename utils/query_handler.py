@@ -1,7 +1,7 @@
 import re
 
 YEAR_PATTERN = r"[0-9]{3,4}年"
-SEASON_PATTERN = r"[0-9一二三]{1,2}季"
+SEASON_PATTERN = r"[0-9一二三四]{1,2}季"
 MONTH_PATTERN = r"[0-9]{1,2}月"
 
 def extract_time(query: str) -> tuple:
@@ -17,7 +17,8 @@ def extract_time(query: str) -> tuple:
     seasons = [int(season.replace('季', '')  
                          .replace('一', '1')      
                          .replace('二', '2')
-                         .replace('三', '3')) for season in seasons] if seasons else []
+                         .replace('三', '3')
+                         .replace('四', '4')) for season in seasons] if seasons else []
     months = [int(month.replace('月', '')) for month in months] if months else []
     
     return (years, seasons, months) 
