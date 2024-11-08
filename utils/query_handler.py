@@ -16,11 +16,11 @@ def extract_time(query: str) -> tuple:
     years = []
     for year in years_reg:
         year_num = int(year.replace('年', ''))
-        years.append(year_num)
+        years.append(year)
         if year_num > 1911:
-            years.append(year_num - 1911)
+            years.append(str(year_num - 1911) + '年')
         else:
-            years.append(year_num + 1911)
+            years.append(str(year_num + 1911) + '年')
 
 
     
