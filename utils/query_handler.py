@@ -9,11 +9,21 @@ def extract_time(query: str) -> tuple:
         回傳 年,季,月 (按照順序)，如果該項沒有則回傳空該項的 空list
     """
     
-    years = re.findall(YEAR_PATTERN, query)
+    years_reg = re.findall(YEAR_PATTERN, query)
     seasons = re.findall(SEASON_PATTERN, query)
     months = re.findall(MONTH_PATTERN, query)
     
-    years = [int(year.replace('年', '')) for year in years] if years else []
+    years = []
+    for year in years_reg:
+        year_num = int(year.replace('年', ''))
+        years.append(year_num)
+        if year_num > 1911:
+            years.append(year_num - 1911)
+        else:
+            years.append(year_num + 1911)
+
+
+    
     seasons = [int(season.replace('季', '')  
                          .replace('一', '1')      
                          .replace('二', '2')
