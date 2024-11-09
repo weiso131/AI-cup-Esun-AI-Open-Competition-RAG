@@ -32,3 +32,9 @@ def show_wrong_ans(i: int, predict: int, ans: dict, token_index, \
 
     with open(f"{path}/qid_{i + 1}.txt", 'w', encoding='utf-8') as file:
         file.write(chunks_text)
+
+def use_reranker(reranker, top10: list[str], query: str, all_predict):
+    pairs = [[query, text] for text in top10]
+    scores = reranker.compute_score(pairs)
+    order = np.argsort(scores)[::-1]
+    return all_predict[order[0]]
