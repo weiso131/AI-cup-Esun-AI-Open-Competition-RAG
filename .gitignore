@@ -174,3 +174,5 @@ pytesseract_env
 chi_tra.traineddata
 *.png
 finance_picture
+*.zip
+finance

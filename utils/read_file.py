@@ -52,10 +52,12 @@ def read_target_insurance_pdf(dir_path: str, indexs: list, already_read: list[st
         filename = f"{dir_path}/{index}"
         text = ""
 
-        if os.path.exists(filename + ".pdf"):
-            text = read_text_pdf(filename + ".pdf")
+        if os.path.exists(filename + ".txt"):
+            text = ""
+            with open(filename + ".txt", "r") as f:
+                text = f.read()
         else:
-            text = read_text_pdf(filename + ".txt")
+            text = read_text_pdf(filename + ".pdf")
 
         if already_read[index] == "":
             already_read[index] = text
